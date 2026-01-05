@@ -404,7 +404,10 @@ def cached_filename_list_(folder_name: str) -> tuple[list[str], dict[str, float]
     for x in out[1]:
         time_modified = out[1][x]
         folder = x
-        if os.path.getmtime(folder) != time_modified:
+        try:
+            if os.path.getmtime(folder) != time_modified:
+                return None
+        except FileNotFoundError:
             return None
 
     folders = folder_names_and_paths[folder_name]

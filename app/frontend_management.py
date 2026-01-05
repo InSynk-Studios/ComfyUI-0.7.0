@@ -40,7 +40,7 @@ def is_valid_version(version: str) -> bool:
 
 def get_installed_frontend_version():
     """Get the currently installed frontend package version."""
-    frontend_version_str = version("comfyui-frontend-package")
+    frontend_version_str = version("fs-comfyui-frontend-package")
     return frontend_version_str
 
 
@@ -50,7 +50,7 @@ def get_required_frontend_version():
         with open(requirements_path, "r", encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
-                if line.startswith("comfyui-frontend-package=="):
+                if line.startswith("fs-comfyui-frontend-package=="):
                     version_str = line.split("==")[-1]
                     if not is_valid_version(version_str):
                         logging.error(f"Invalid version format in requirements.txt: {version_str}")
